@@ -3,6 +3,8 @@ import { X, Trash2, ShoppingBag, MessageSquare, ShieldCheck, CheckCircle2 } from
 import confetti from 'canvas-confetti';
 import { useCart } from '../context/CartContext';
 import { getWhatsAppUrl } from '../config/constants';
+import { PRODUCT_FALLBACK_LIST } from '../config/images';
+import { ImageWithFallback } from './ImageWithFallback';
 
 export const CartDrawer: React.FC = () => {
   const { cart, removeFromCart, updateQuantity, isCartOpen, setIsCartOpen, totalItems, subtotal } =
@@ -135,10 +137,11 @@ export const CartDrawer: React.FC = () => {
                     key={pId}
                     className="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800/80 flex gap-3 items-center"
                   >
-                    <img
+                    <ImageWithFallback
                       src={item.product.imagen_url}
                       alt={item.product.nombre}
-                      referrerPolicy="no-referrer"
+                      fallbackSrc={PRODUCT_FALLBACK_LIST}
+                      fallbackTitle={item.product.nombre}
                       className="w-16 h-16 rounded-lg object-cover bg-slate-100 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 shrink-0"
                     />
                     <div className="flex-1 min-w-0 space-y-1">

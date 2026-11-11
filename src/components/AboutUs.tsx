@@ -1,5 +1,7 @@
 import React from 'react';
 import { Award, Compass, Recycle, Cpu } from 'lucide-react';
+import { WORKSHOP_FALLBACK_SOURCES } from '../config/images';
+import { ImageWithFallback } from './ImageWithFallback';
 
 export const AboutUs: React.FC = () => {
   return (
@@ -9,13 +11,14 @@ export const AboutUs: React.FC = () => {
           {/* Left Column: Workshop Image Showcase */}
           <div className="lg:col-span-5 order-2 lg:order-1">
             <div className="relative rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-2xl">
-              <img
-                src="/src/assets/images/workshop_team_farm_1794326994341.jpg"
+              <ImageWithFallback
+                src={WORKSHOP_FALLBACK_SOURCES[0]}
+                fallbackSrc={WORKSHOP_FALLBACK_SOURCES.slice(1)}
                 alt="Instalaciones del taller Cubito3D y granja de manufactura aditiva"
-                referrerPolicy="no-referrer"
+                fallbackTitle="Taller & Granja Cubito3D"
                 className="w-full h-[440px] object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none" />
               <div className="absolute bottom-5 left-5 right-5 p-4 rounded-xl bg-slate-900/90 backdrop-blur-md border border-slate-800 text-xs space-y-1 text-white">
                 <div className="font-semibold">Taller Cubito3D · Buenos Aires</div>
                 <div className="text-slate-400">Granja con más de 18 unidades FDM y estaciones de lavado & curado UV SLA</div>

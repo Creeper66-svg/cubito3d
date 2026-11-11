@@ -3,6 +3,8 @@ import { Search, ShoppingBag, Eye, RefreshCw, Database, CheckCircle, AlertCircle
 import { Product } from '../types';
 import { fetchProductsFromSupabase, FetchProductsResult } from '../lib/supabase';
 import { useCart } from '../context/CartContext';
+import { PRODUCT_FALLBACK_LIST } from '../config/images';
+import { ImageWithFallback } from './ImageWithFallback';
 
 interface CatalogProps {
   onSelectProduct: (product: Product) => void;
@@ -204,14 +206,11 @@ export const Catalog: React.FC<CatalogProps> = ({ onSelectProduct }) => {
                 >
                   {/* Image container: 65-75% height ratio with fallback */}
                   <div className="relative aspect-[4/3] w-full bg-slate-100 dark:bg-slate-900 overflow-hidden">
-                    <img
+                    <ImageWithFallback
                       src={product.imagen_url}
                       alt={product.nombre}
-                      referrerPolicy="no-referrer"
-                      onError={(e) => {
-                        (e.target as HTMLImageElement).src =
-                          '/src/assets/images/product_geometric_sculpture_1794326992967.jpg';
-                      }}
+                      fallbackSrc={PRODUCT_FALLBACK_LIST}
+                      fallbackTitle={product.nombre}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950/50 via-transparent to-transparent pointer-events-none" />

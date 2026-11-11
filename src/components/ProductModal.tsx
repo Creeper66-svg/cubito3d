@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { X, ShoppingBag, CheckCircle, Cpu } from 'lucide-react';
 import { Product } from '../types';
 import { useCart } from '../context/CartContext';
+import { PRODUCT_FALLBACK_LIST } from '../config/images';
+import { ImageWithFallback } from './ImageWithFallback';
 
 interface ProductModalProps {
   product: Product | null;
@@ -53,10 +55,11 @@ export const ProductModal: React.FC<ProductModalProps> = ({ product, onClose }) 
         <div className="grid grid-cols-1 md:grid-cols-2">
           {/* Image */}
           <div className="relative aspect-square md:aspect-auto bg-slate-100 dark:bg-slate-950 flex items-center justify-center overflow-hidden">
-            <img
+            <ImageWithFallback
               src={product.imagen_url}
               alt={product.nombre}
-              referrerPolicy="no-referrer"
+              fallbackSrc={PRODUCT_FALLBACK_LIST}
+              fallbackTitle={product.nombre}
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent pointer-events-none" />

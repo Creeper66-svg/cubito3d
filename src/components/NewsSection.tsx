@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import { NewsItem } from '../types';
+import { SITE_IMAGES, HERO_FALLBACK_SOURCES } from '../config/images';
+import { ImageWithFallback } from './ImageWithFallback';
 
 const newsData: NewsItem[] = [
   {
@@ -9,7 +11,7 @@ const newsData: NewsItem[] = [
     categoria: 'Nuevo Producto',
     fecha: 'Marzo 2026',
     resumen: 'Presentamos nuestra nueva colección de diseño bio-paramétrico. Piezas lumínicas impresas en PLA Mate con bases de madera natural mecanizadas en taller.',
-    imagen: '/src/assets/images/product_geometric_sculpture_1794326992967.jpg',
+    imagen: SITE_IMAGES.news.voronoiLaunch,
     etiqueta: 'Diseño & Decoración',
   },
   {
@@ -18,7 +20,7 @@ const newsData: NewsItem[] = [
     categoria: 'Materiales Avanzados',
     fecha: 'Febrero 2026',
     resumen: 'Incorporamos filamentos reforzados con microfibras de carbono para soportar esfuerzos mecánicos severos, torsión y altas temperaturas en robótica.',
-    imagen: '/src/assets/images/product_mechanical_gearset_1794326993897.jpg',
+    imagen: SITE_IMAGES.news.petgCarbon,
     etiqueta: 'Ingeniería',
   },
   {
@@ -27,7 +29,7 @@ const newsData: NewsItem[] = [
     categoria: 'Taller & Granja',
     fecha: 'Enero 2026',
     resumen: 'Sumamos 6 impresoras CoreXY con calibración automatizada por resonancia y extrusión de alto flujo, permitiendo despachos en 24 horas para pedidos urgentes.',
-    imagen: '/src/assets/images/workshop_team_farm_1794326994341.jpg',
+    imagen: SITE_IMAGES.news.farmExpansion,
     etiqueta: 'Capacidad de Planta',
   },
 ];
@@ -61,10 +63,11 @@ export const NewsSection: React.FC = () => {
               className="group rounded-2xl bg-white dark:bg-slate-950/90 border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 shadow-sm dark:shadow-none hover:shadow-lg transition-all duration-200 overflow-hidden flex flex-col justify-between cursor-pointer"
             >
               <div className="relative aspect-[16/10] overflow-hidden bg-slate-100 dark:bg-slate-900">
-                <img
+                <ImageWithFallback
                   src={item.imagen}
                   alt={item.titulo}
-                  referrerPolicy="no-referrer"
+                  fallbackSrc={HERO_FALLBACK_SOURCES}
+                  fallbackTitle={item.titulo}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent pointer-events-none" />
@@ -103,10 +106,11 @@ export const NewsSection: React.FC = () => {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200">
           <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 max-w-xl w-full rounded-2xl overflow-hidden p-6 space-y-4 shadow-2xl">
             <div className="relative h-56 rounded-xl overflow-hidden">
-              <img
+              <ImageWithFallback
                 src={selectedNews.imagen}
                 alt={selectedNews.titulo}
-                referrerPolicy="no-referrer"
+                fallbackSrc={HERO_FALLBACK_SOURCES}
+                fallbackTitle={selectedNews.titulo}
                 className="w-full h-full object-cover"
               />
             </div>

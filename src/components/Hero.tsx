@@ -1,7 +1,10 @@
 import React from 'react';
 import { ArrowRight, Layers, CheckCircle2 } from 'lucide-react';
+import { HERO_FALLBACK_SOURCES } from '../config/images';
+import { ImageWithFallback } from './ImageWithFallback';
 
 export const Hero: React.FC = () => {
+
   return (
     <section id="inicio" className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-slate-50 dark:bg-slate-950 transition-colors duration-200">
       {/* Background blueprint grid and subtle radial gradient */}
@@ -73,17 +76,19 @@ export const Hero: React.FC = () => {
 
           {/* Right Column: Hero Visual Showcase */}
           <div className="lg:col-span-5 relative">
-            <div className="relative rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/80 shadow-2xl shadow-cyan-950/10 dark:shadow-cyan-950/30 group">
-              <img
-                src="/src/assets/images/hero_3d_printer_workshop_1794326992377.jpg"
+            <div className="relative rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-950 shadow-2xl shadow-cyan-950/20 group min-h-[380px] sm:min-h-[420px] flex items-center justify-center">
+              <ImageWithFallback
+                src={HERO_FALLBACK_SOURCES[0]}
+                fallbackSrc={HERO_FALLBACK_SOURCES.slice(1)}
                 alt="Granja de impresoras 3D profesionales en Cubito3D"
-                referrerPolicy="no-referrer"
+                fallbackTitle="Granja Cubito3D · FDM & SLA 8K"
                 className="w-full h-[380px] sm:h-[420px] object-cover group-hover:scale-102 transition-transform duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent" />
+
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent pointer-events-none" />
 
               {/* Technical floating badges on image */}
-              <div className="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-slate-900/90 backdrop-blur-md border border-slate-800/80 shadow-lg text-white">
+              <div className="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-slate-900/90 backdrop-blur-md border border-slate-800/80 shadow-lg text-white pointer-events-none">
                 <div className="flex items-center justify-between text-xs text-slate-400 font-mono-tech mb-2">
                   <span className="flex items-center gap-1.5 text-cyan-300">
                     <span className="w-2 h-2 rounded-full bg-cyan-400" />
