@@ -1,0 +1,6 @@
+{
+  "name": "Cubito3D - Taller de Impresión 3D",
+  "description": "Damos forma a tu imaginación. Tienda y taller de impresión 3D profesional, fabricación a medida y catálogo de productos.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
